@@ -1,4 +1,4 @@
-import loginRoutes from './login.routes';
-import testing from './testing';
+import loginRoutes from './loginRoutes';
+import teamRoutes from './teamRoutes';
 
-export { loginRoutes, testing };
+export { loginRoutes, teamRoutes };
