@@ -4,7 +4,6 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
-import UserModel from '../database/models/UserModel';
 
 import { Response } from 'superagent';
 import User from '../database/models/UserModel';
@@ -25,7 +24,7 @@ describe('Testing Login endpoint success', () => {
       .resolves(findOne as User);
   });
 
-  afterEach(()=>{
+  afterEach(() => {
     (User.findOne as sinon.SinonStub).restore();
   })
 
@@ -84,6 +83,6 @@ describe('Testing login/validade endpoint success', () => {
       .set('authorization', 'eyJhbGciOiJIUzI1NiJ9.YWRtaW5AYWRtaW4uY29t.s1U6I8B6x_9eLeJyb9PdjTz1JbNXo57xor-T1493RW0')
 
     expect(chaiHttpResponse.status).to.be.equal(200);
-    expect(chaiHttpResponse.body).to.be.equal('admin')
+    expect(chaiHttpResponse.body.role).to.be.equal('admin')
   })
 })
