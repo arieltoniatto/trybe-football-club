@@ -19,7 +19,7 @@ export default class MatchController {
     console.log(req.query);
     try {
       const { inProgress } = req.query;
-      const response = await this.matchService.inProgress(inProgress as string);
+      const response = await this.matchService.inProg(inProgress as string);
       if (!response) return res.status(404).json({ message: 'Not found' });
       return res.status(200).json(response);
     } catch (err) {
@@ -32,5 +32,15 @@ export default class MatchController {
     const response = await this.matchService.newMatch(request);
     if (!response) return res.status(404).json({ message: 'Not found' });
     return res.status(201).json(response);
+  };
+
+  public finishMatch = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      await this.matchService.finishMatch(id);
+      return res.status(200).json({ message: 'Finished' });
+    } catch (err) {
+      return res.send(err);
+    }
   };
 }

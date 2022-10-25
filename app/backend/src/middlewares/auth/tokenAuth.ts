@@ -7,7 +7,7 @@ export default async function middlewareToken(req: Request, res: Response, next:
   try {
     validateToken(authorization);
   } catch (err) {
-    return res.status(401).json({ message: 'Invalid or expired Token' });
+    return res.status(401).json({ message: 'Token must be a valid token' });
   }
   next();
 }

@@ -10,7 +10,7 @@ export default class MatchService {
     return response;
   };
 
-  public inProgress = async (query: string): Promise<IMatch[] | null> => {
+  public inProg = async (query: string): Promise<IMatch[] | null> => {
     let isInProgress;
     if (query === 'true') isInProgress = true;
     if (query === 'false') isInProgress = false;
@@ -38,5 +38,12 @@ export default class MatchService {
     if (!create) return null;
 
     return create;
+  };
+
+  public finishMatch = async (id: string): Promise<void> => {
+    await Match.update(
+      { inProgress: false },
+      { where: { id: Number(id) } },
+    );
   };
 }
