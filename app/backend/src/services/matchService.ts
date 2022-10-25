@@ -1,6 +1,7 @@
 import IMatch from '../Interface/Match/IMatch';
 import Match from '../database/models/MatchModel';
 import INewMatch from '../Interface/Match/INewMatch';
+import IEdit from '../Interface/Match/IEdit';
 
 export default class MatchService {
   public allMatches = async (): Promise<IMatch[]> => {
@@ -43,6 +44,13 @@ export default class MatchService {
   public finishMatch = async (id: string): Promise<void> => {
     await Match.update(
       { inProgress: false },
+      { where: { id: Number(id) } },
+    );
+  };
+
+  public editMatch = async (id: string, body: IEdit): Promise<void> => {
+    await Match.update(
+      { homeTeamGoals: body.homeTeamGoals, awayTeamGoals: body.awayTeamGoals },
       { where: { id: Number(id) } },
     );
   };

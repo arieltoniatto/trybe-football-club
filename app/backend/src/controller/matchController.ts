@@ -43,4 +43,14 @@ export default class MatchController {
       return res.send(err);
     }
   };
+
+  public editMatch = async (req: Request, res: Response) => {
+    try {
+      const { id } = req.params;
+      await this.matchService.editMatch(id, req.body);
+      return res.status(200).json({ message: 'Match updated' });
+    } catch (err) {
+      return res.send(err);
+    }
+  };
 }
