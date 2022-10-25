@@ -1,5 +1,6 @@
 import IMatch from '../Interface/Match/IMatch';
 import Match from '../database/models/MatchModel';
+import INewMatch from '../Interface/Match/INewMatch';
 
 export default class MatchService {
   public allMatches = async (): Promise<IMatch[]> => {
@@ -24,5 +25,18 @@ export default class MatchService {
     if (!result) return null;
 
     return result;
+  };
+
+  public newMatch = async (body: INewMatch): Promise<IMatch | null> => {
+    const create = await Match.create({
+      homeTeam: body.homeTeam,
+      homeTeamGoals: body.homeTeamGoals,
+      awayTeam: body.awayTeam,
+      awayTeamGoals: body.awayTeamGoals,
+      inProgress: true,
+    });
+    if (!create) return null;
+
+    return create;
   };
 }

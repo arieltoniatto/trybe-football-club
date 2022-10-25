@@ -26,4 +26,11 @@ export default class MatchController {
       return res.send(err);
     }
   };
+
+  public saveMatch = async (req: Request, res: Response) => {
+    const request = req.body;
+    const response = await this.matchService.newMatch(request);
+    if (!response) return res.status(404).json({ message: 'Not found' });
+    return res.status(201).json(response);
+  };
 }
