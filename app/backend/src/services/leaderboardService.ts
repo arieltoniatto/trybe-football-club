@@ -12,15 +12,20 @@ export default class LeaderboardService {
     return matches;
   };
 
-  public getLeaderboard = async (): Promise<ILeaderboard[]> => {
+  public getLeaderboard = async (isHome: boolean): Promise<ILeaderboard[]> => {
     const matches = await this.getFinishedMatches();
-    const allTNames = matches.map(({ teamHome }) => teamHome?.teamName);
+    let names: string[] = [];
+    if (isHome) {
+      names = matches.map(({ teamHome }) => teamHome?.teamName) as string[];
+    } else {
+      names = matches.map(({ teamAway }) => teamAway?.teamName) as string[];
+    }
+    // const allTNames = matches.map(({ teamHome }) => teamHome?.teamName);
 
-    console.log(allTNames);
+    const teamsNames = names.filter((v, i) => names.indexOf(v) === i) as string[];
+    console.log(teamsNames);
 
-    const teamsNames = allTNames.filter((v, i) => allTNames.indexOf(v) === i) as string[];
-
-    const board = generateBoard(teamsNames as string[], matches);
+    const board = generateBoard(teamsNames as string[], matches, isHome);
 
     // https://stackoverflow.com/questions/6913512/how-to-sort-an-array-of-objects-by-multiple-fields
 
