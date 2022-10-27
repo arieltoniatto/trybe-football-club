@@ -24,13 +24,6 @@ export default class LeaderboardService {
 
     const board = generateBoard(teamsNames as string[], matches, isHome);
 
-    // https://stackoverflow.com/questions/6913512/how-to-sort-an-array-of-objects-by-multiple-fields
-
-    // const sortedBoard = board.sort(
-    //   (a, b) => b.totalPoints - a.totalPoints
-    //   || b.goalsBalance - a.goalsBalance || b.goalsFavor - a.goalsFavor || a.goalsOwn - b.goalsOwn,
-    // );
-
     return board;
   };
 
