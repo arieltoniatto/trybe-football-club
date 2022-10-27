@@ -1,24 +1,6 @@
 import IMatch from '../Interface/Match/IMatch';
 import ILeaderboard from '../Interface/Leaderboard/ILeaderboard';
 
-// inserir regras de negócio
-
-// retornar um [] de obj
-// "name": "Palmeiras",
-// "totalPoints": 13, OK
-// "totalGames": 5, OK
-// "totalVictories": 4, OK
-// "totalDraws": 1, OK
-// "totalLosses": 0, OK
-// "goalsFavor": 17, OK
-// "goalsOwn": 5, OK
-// "goalsBalance": 12, OK
-// "efficiency": 86.67 OK
-
-// map para construir obj
-
-// forEach -> id/nome -> func calc
-
 const victories = (matches: IMatch[], isHome: boolean) => {
   let totalVictories = 0;
   matches.forEach((match) => {
@@ -145,6 +127,11 @@ const filterTeams = (matches: IMatch[], isHome: boolean, team: string) => {
   return teamGames;
 };
 
+const sortBoard = (leaderboard: ILeaderboard[]) => leaderboard.sort(
+  (a, b) => b.totalPoints - a.totalPoints
+    || b.goalsBalance - a.goalsBalance || b.goalsFavor - a.goalsFavor || a.goalsOwn - b.goalsOwn,
+);
+
 const generateBoard = (teamsName: string[], matches: IMatch[], isHome: boolean) => {
   const leaderboard: ILeaderboard[] = [];
   teamsName.forEach((team) => {
@@ -162,7 +149,44 @@ const generateBoard = (teamsName: string[], matches: IMatch[], isHome: boolean) 
       efficiency: efficiency(teamsGames, isHome),
     });
   });
-  return leaderboard;
+
+  const sortedBoard = sortBoard(leaderboard);
+
+  return sortedBoard;
+};
+
+const concatLeaderboard = (home: ILeaderboard, away: ILeaderboard) => {
+  const newLeaderboard = {
+    name: home.name,
+    totalPoints: home.totalPoints + away.totalPoints,
+    totalGames: home.totalGames + away.totalGames,
+    totalVictories: home.totalVictories + away.totalVictories,
+    totalDraws: home.totalDraws + away.totalDraws,
+    totalLosses: home.totalLosses + away.totalLosses,
+    goalsFavor: home.goalsFavor + away.goalsFavor,
+    goalsOwn: home.goalsOwn + away.goalsOwn,
+    goalsBalance: home.goalsBalance + away.goalsBalance,
+    efficiency: Number((((home.totalPoints + away.totalPoints)
+    / ((home.totalGames + away.totalGames) * 3))
+    * 100).toFixed(2)),
+  };
+  return newLeaderboard;
+};
+
+export const generateGeneralBoard = (home: ILeaderboard[], away: ILeaderboard[]) => {
+  const leaderboard: ILeaderboard[] = [];
+  home.forEach((hItem, hIndex) => {
+    away.forEach((aItem, aIndex) => {
+      if (hItem.name === aItem.name) {
+        const generalData = concatLeaderboard(home[hIndex], away[aIndex]);
+        leaderboard.push(generalData);
+      }
+    });
+  });
+
+  const sortedBoard = sortBoard(leaderboard);
+
+  return sortedBoard;
 };
 
 export default generateBoard;
