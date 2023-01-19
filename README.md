@@ -30,7 +30,7 @@ Para que isso fosse possível, a aplicação foi dockerizada e desenvolvida em T
   - Docker
 
 ## Rodando o projeto
-  * clone o repositório para a sua máquina
+  * clone o repositório para a sua máquina através do seu terminal utilizando o comando $git clone git@github.com:arieltoniatto/trybe-futebol-clube.git
   * entre na pasta clonada e execute o comando $npm run compose:up
   * após inicializado acesse o terminal interativo do container através do comando $docker exec -it app_backend bash
   * instale as dependências com o comando $npm install
