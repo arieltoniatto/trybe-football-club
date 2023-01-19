@@ -30,8 +30,8 @@ Para que isso fosse possível, a aplicação foi dockerizada e desenvolvida em T
   - Docker
 
 ## Rodando o projeto
-  [] - clone o repositório para a sua máquina
-  [] - entre na pasta clonada e execute o comando $npm run compose:up
-  [] - após inicializado acesse o terminal interativo do container através do comando $docker exec -it app_backend bash
-  [] - instale as dependências com o comando $npm install
-  [] - acesse a aplicação pela rota http://localhost:3000/
+  * clone o repositório para a sua máquina
+  * entre na pasta clonada e execute o comando $npm run compose:up
+  * após inicializado acesse o terminal interativo do container através do comando $docker exec -it app_backend bash
+  * instale as dependências com o comando $npm install
+  * acesse a aplicação pela rota http://localhost:3000/
