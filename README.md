@@ -11,14 +11,14 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 
-# TFC Project
+# TFC Project :soccer:
 Seja bem vindo ao Trybe Futebol Clube. Esse projeto foi desenvolvido durante o módulo de back-end da Trybe.
 
-## Sobre o projeto
+## Sobre o projeto :information_source:
 Foi nos fornecido todo o front-end e tínhamos como objetivo construir uma API RESTful e um banco de dados para um site informativo sobre partidas de futebol e classificação dos times.
 Para que isso fosse possível, a aplicação foi dockerizada e desenvolvida em TypeScript implementando a arquitetura MSC (Model, Service, Controller) em conjunto com ORM Sequelize aplicando os conceitos de SOLID. Também foi utilizado a biblioteca JWT para a criação e autenticação e bycriptjs para a criptografia de senhas. Os testes foram desenvolvidos com o auxilio das bibliotecas chai e sinon.
 
-## Tecnologias
+## Tecnologias :computer:
   - TypeScript
   - Node
   - JavaScript
@@ -29,9 +29,21 @@ Para que isso fosse possível, a aplicação foi dockerizada e desenvolvida em T
   - Sinon
   - Docker
 
-## Rodando o projeto
-  * clone o repositório para a sua máquina através do seu terminal utilizando o comando $git clone git@github.com:arieltoniatto/trybe-futebol-clube.git
-  * entre na pasta clonada e execute o comando $npm run compose:up
-  * após inicializado acesse o terminal interativo do container através do comando $docker exec -it app_backend bash
-  * instale as dependências com o comando $npm install
+## Rodando o projeto :speech_balloon:
+  * clone o repositório para a sua máquina através do seu terminal utilizando o comando 
+  ``` code 
+  git clone git@github.com:arieltoniatto/trybe-futebol-clube.git
+  ```
+  * entre na pasta clonada e execute o comando
+  ``` code
+  npm run compose:up
+  ```
+  * após inicializado acesse o terminal interativo do container através do comando
+  ``` code
+  docker exec -it app_backend bash
+  ```
+  * instale as dependências com o comando 
+  ```
+  npm install
+  ```
   * acesse a aplicação pela rota http://localhost:3000/
